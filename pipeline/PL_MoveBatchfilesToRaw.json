@@ -1,0 +1,208 @@
+{
+	"name": "PL_MoveBatchfilesToRaw",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetBatchConfig",
+				"description": "Retrieves all required Datasets information from the Metadata ",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT LandingContainer, LandingFolderPath, RawContainer, RawZoneFolderPath,RawZoneFileName,FileSizeMin, FileSizeMax,FileNameKeyWord from procfwk.Datasets A, procfwk.Batches b\nwhere a.BatchId=b.BatchId and b.BatchName='@{pipeline().parameters.Batch}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "GetSetMetadata",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "MoveFilesToRaw",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetBatchConfig",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetBatchConfig').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Get Metadata1",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "SourceObjecct",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container": {
+											"value": "@item().LandingContainer",
+											"type": "Expression"
+										},
+										"FolderPath": {
+											"value": "@item().LandingFolderPath",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@concat('*',item().FileNameKeyword,'*.*')",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"childItems"
+								],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							}
+						},
+						{
+							"name": "MoveFileToRaw",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"deleteFilesAfterCompletion": false
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceObjecct",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container": {
+											"value": "@item().LandingContainer",
+											"type": "Expression"
+										},
+										"FolderPath": {
+											"value": "@item().LandingFolderPath",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@activity('Get Metadata1').output.childitems[0].name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Destination",
+									"type": "DatasetReference",
+									"parameters": {
+										"Container": {
+											"value": "@item().RawContainer",
+											"type": "Expression"
+										},
+										"Folder": {
+											"value": "@item().RawZoneFolderPath",
+											"type": "Expression"
+										},
+										"FileName": {
+											"value": "@item().RawZoneFileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"Batch": {
+				"type": "string"
+			},
+			"ExecutionId": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"LandingContainer": {
+				"type": "String"
+			},
+			"LandingFolder": {
+				"type": "String"
+			},
+			"RawContainer": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "_Workers"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-12-14T09:48:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

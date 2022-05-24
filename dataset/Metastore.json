@@ -1,0 +1,43 @@
+{
+	"name": "Metastore",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Metastore",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "source_name",
+				"type": "varchar"
+			},
+			{
+				"name": "source_type",
+				"type": "varchar"
+			},
+			{
+				"name": "source_schema",
+				"type": "varchar"
+			},
+			{
+				"name": "source_object_name",
+				"type": "varchar"
+			},
+			{
+				"name": "source_filter_condition",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "src_config"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

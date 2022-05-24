@@ -1,0 +1,45 @@
+{
+	"name": "ODP Batch",
+	"properties": {
+		"description": "procfwk grandparent pipeline used optionally to bootstrap any wider processes in your Data Factory that then calls the processing framework.",
+		"activities": [
+			{
+				"name": "SAP ODP",
+				"description": "Call procfwk",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "02-Parent",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"BatchName": {
+							"value": "@pipeline().parameters.BatchName",
+							"type": "Expression"
+						},
+						"FileName": "test",
+						"FolderPath": "test"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"BatchName": {
+				"type": "string",
+				"defaultValue": "ODP"
+			}
+		},
+		"folder": {
+			"name": "Consumers"
+		},
+		"annotations": [
+			"procfwk",
+			"Grandparent"
+		],
+		"lastPublishTime": "2021-12-14T20:07:53Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

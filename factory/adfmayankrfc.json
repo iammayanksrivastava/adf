@@ -1,0 +1,9 @@
+{
+	"name": "adfmayankrfc",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "48a5b731-5683-4566-8eab-f14e573321f8",
+		"tenantId": "7a061f9b-6449-470f-9a68-ae5929da0007"
+	}
+}

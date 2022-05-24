@@ -1,0 +1,29 @@
+{
+	"name": "trigger2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "StorageEventTrigger",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"pfilename": "@triggerBody().filename",
+					"pfolderpath": "@triggerBody().folderPath",
+					"psize": "3"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/landing/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/f6c70282-f97e-45b0-aec5-80d03b9db76b/resourceGroups/sandbox-data-platform/providers/Microsoft.Storage/storageAccounts/sndboxdpstorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
