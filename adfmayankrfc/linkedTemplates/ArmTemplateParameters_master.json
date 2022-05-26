@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfmayankrfc"
+		},
+		"AdventureWorks_connectionString": {
+			"value": ""
+		},
+		"Metastore_connectionString": {
+			"value": ""
+		},
+		"SupportDatabase_connectionString": {
+			"value": ""
+		},
+		"ConfigDB_connectionString": {
+			"value": ""
+		},
+		"src_AdventureWorks_connectionString": {
+			"value": ""
+		},
+		"Landing_accountKey": {
+			"value": ""
+		},
+		"Landing_properties_typeProperties_url": {
+			"value": "https://sandboxadlsmayank.dfs.core.windows.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
