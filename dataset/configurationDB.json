@@ -1,0 +1,55 @@
+{
+	"name": "configurationDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ConfigDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "src_system_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "src_object_location",
+				"type": "varchar"
+			},
+			{
+				"name": "src_object_name",
+				"type": "varchar"
+			},
+			{
+				"name": "src_filter_condition",
+				"type": "varchar"
+			},
+			{
+				"name": "tgt_location",
+				"type": "varchar"
+			},
+			{
+				"name": "tgt_location_container",
+				"type": "varchar"
+			},
+			{
+				"name": "tgt_location_container_folder",
+				"type": "varchar"
+			},
+			{
+				"name": "tg_file_name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "config",
+			"table": "datasets"
+		}
+	}
+}
