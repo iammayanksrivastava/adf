@@ -8,19 +8,19 @@
 		"AdventureWorks_connectionString": {
 			"value": ""
 		},
+		"ConfigDB_connectionString": {
+			"value": ""
+		},
+		"Landing_accountKey": {
+			"value": ""
+		},
 		"Metastore_connectionString": {
 			"value": ""
 		},
 		"SupportDatabase_connectionString": {
 			"value": ""
 		},
-		"ConfigDB_connectionString": {
-			"value": ""
-		},
 		"src_AdventureWorks_connectionString": {
-			"value": ""
-		},
-		"Landing_accountKey": {
 			"value": ""
 		},
 		"Landing_properties_typeProperties_url": {

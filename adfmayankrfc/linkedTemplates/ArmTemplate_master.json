@@ -11,6 +11,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AdventureWorks'"
 		},
+		"ConfigDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ConfigDB'"
+		},
+		"Landing_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Landing'"
+		},
 		"Metastore_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Metastore'"
@@ -19,17 +27,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SupportDatabase'"
 		},
-		"ConfigDB_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ConfigDB'"
-		},
 		"src_AdventureWorks_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'src_AdventureWorks'"
-		},
-		"Landing_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'Landing'"
 		},
 		"Landing_properties_typeProperties_url": {
 			"type": "string",
@@ -65,20 +65,20 @@
 					"AdventureWorks_connectionString": {
 						"value": "[parameters('AdventureWorks_connectionString')]"
 					},
+					"ConfigDB_connectionString": {
+						"value": "[parameters('ConfigDB_connectionString')]"
+					},
+					"Landing_accountKey": {
+						"value": "[parameters('Landing_accountKey')]"
+					},
 					"Metastore_connectionString": {
 						"value": "[parameters('Metastore_connectionString')]"
 					},
 					"SupportDatabase_connectionString": {
 						"value": "[parameters('SupportDatabase_connectionString')]"
 					},
-					"ConfigDB_connectionString": {
-						"value": "[parameters('ConfigDB_connectionString')]"
-					},
 					"src_AdventureWorks_connectionString": {
 						"value": "[parameters('src_AdventureWorks_connectionString')]"
-					},
-					"Landing_accountKey": {
-						"value": "[parameters('Landing_accountKey')]"
 					},
 					"Landing_properties_typeProperties_url": {
 						"value": "[parameters('Landing_properties_typeProperties_url')]"
