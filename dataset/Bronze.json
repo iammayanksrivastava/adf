@@ -1,10 +1,6 @@
 {
 	"name": "Bronze",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Bronze",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"folder": {
 				"type": "string"

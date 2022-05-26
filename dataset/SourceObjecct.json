@@ -1,10 +1,6 @@
 {
 	"name": "SourceObjecct",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "LS_Landing",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"Container": {
 				"type": "string"
