@@ -26,6 +26,43 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach Config",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Fetch Configuration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Fetch Configuration').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data from Source",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"enableStaging": false
+							}
+						}
+					]
+				}
 			}
 		],
 		"folder": {
