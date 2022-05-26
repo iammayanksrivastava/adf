@@ -11,6 +11,9 @@
 			},
 			"filename": {
 				"type": "string"
+			},
+			"StartTime": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -23,7 +26,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().folder",
+					"value": "@concat(dataset().folder,'/YYYY=',formatDateTime(dataset().StartTime,'yyyy'),'/MM=',formatDateTime(dataset().StartTime,'MM'),'/DD=',formatDateTime(dataset().StartTime,'dd'),'/HH=',formatDateTime(dataset().StartTime,'HH'))",
 					"type": "Expression"
 				},
 				"fileSystem": "landing"
