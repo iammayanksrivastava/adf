@@ -61,7 +61,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select * from @(item().src_object_location).@(item().src_object_name)",
+										"value": "select from @{item().src_object_location}.@{item().src_object_name}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
