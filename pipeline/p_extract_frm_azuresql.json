@@ -7,7 +7,7 @@
 				"type": "Lookup",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Copy Start Time",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -126,7 +126,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Copy Start Time",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"userProperties": [],
