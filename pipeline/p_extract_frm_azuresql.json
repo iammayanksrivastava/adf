@@ -1,0 +1,9 @@
+{
+	"name": "p_extract_frm_azuresql",
+	"properties": {
+		"folder": {
+			"name": "Data Extraction Component"
+		},
+		"annotations": []
+	}
+}
