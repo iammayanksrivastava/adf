@@ -25,10 +25,6 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"dataset": {
-						"referenceName": "Metastore",
-						"type": "DatasetReference"
-					},
 					"firstRowOnly": false
 				}
 			},
@@ -84,38 +80,8 @@
 										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "AdventureWorks",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Bronze",
-									"type": "DatasetReference",
-									"parameters": {
-										"folder": {
-											"value": "@item().source_name ",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@concat(replace(item().source_object_name,'.txt',''), utcnow(), '.csv')",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+								"enableStaging": false
+							}
 						},
 						{
 							"name": "Audit Log",

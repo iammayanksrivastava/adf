@@ -25,10 +25,6 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"dataset": {
-						"referenceName": "GetSetMetadata",
-						"type": "DatasetReference"
-					},
 					"firstRowOnly": false
 				}
 			},
@@ -64,24 +60,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "SourceObjecct",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@item().LandingContainer",
-											"type": "Expression"
-										},
-										"FolderPath": {
-											"value": "@item().LandingFolderPath",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@concat('*',item().FileNameKeyword,'*.*')",
-											"type": "Expression"
-										}
-									}
-								},
 								"fieldList": [
 									"childItems"
 								],
@@ -133,47 +111,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "SourceObjecct",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@item().LandingContainer",
-											"type": "Expression"
-										},
-										"FolderPath": {
-											"value": "@item().LandingFolderPath",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@activity('Get Metadata1').output.childitems[0].name",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_Destination",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@item().RawContainer",
-											"type": "Expression"
-										},
-										"Folder": {
-											"value": "@item().RawZoneFolderPath",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@item().RawZoneFileName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							}
 						}
 					]
 				}

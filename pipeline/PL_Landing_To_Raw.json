@@ -51,47 +51,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "SourceObjecct",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@activity('Validate').output.firstrow.LandingContainer",
-											"type": "Expression"
-										},
-										"FolderPath": {
-											"value": "@activity('Validate').output.firstrow.LandingFolderPath",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@pipeline().parameters.FileName",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DS_Destination",
-									"type": "DatasetReference",
-									"parameters": {
-										"Container": {
-											"value": "@activity('Validate').output.firstrow.RawContainer",
-											"type": "Expression"
-										},
-										"Folder": {
-											"value": "@activity('Validate').output.firstrow.RawZoneFolderPath",
-											"type": "Expression"
-										},
-										"FileName": {
-											"value": "@activity('Validate').output.firstrow.RawZoneFileName",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							}
 						},
 						{
 							"name": "Validate",
@@ -115,10 +75,6 @@
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "GetSetMetadata",
-									"type": "DatasetReference"
 								},
 								"firstRowOnly": true
 							}
