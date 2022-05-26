@@ -203,7 +203,7 @@
 									},
 									"usedDataIntegrationUnits": {
 										"value": {
-											"value": "@item().usedDataIntegrationUnits",
+											"value": "@activity('Copy data from Source').output.usedDataIntegrationUnits",
 											"type": "Expression"
 										},
 										"type": "Decimal"
