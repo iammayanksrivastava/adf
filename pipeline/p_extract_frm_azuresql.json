@@ -36,6 +36,7 @@
 			},
 			{
 				"name": "ForEach Config",
+				"description": "",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -115,7 +116,7 @@
 											"type": "Expression"
 										},
 										"StartTime": {
-											"value": "@pipeline().parameters.StartTime",
+											"value": "@variables('CopyStartTime')",
 											"type": "Expression"
 										}
 									}
