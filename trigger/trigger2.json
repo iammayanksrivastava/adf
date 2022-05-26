@@ -3,19 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "StorageEventTrigger",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"pfilename": "@triggerBody().filename",
-					"pfolderpath": "@triggerBody().folderPath",
-					"psize": "3"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/landing/blobs/",
