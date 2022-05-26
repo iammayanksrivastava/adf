@@ -215,6 +215,9 @@
 					},
 					"filename": {
 						"type": "string"
+					},
+					"StartTime": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -227,7 +230,7 @@
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@dataset().folder",
+							"value": "@concat(dataset().folder,'/YYYY=',formatDateTime(dataset().StartTime,'yyyy'),'/MM=',formatDateTime(dataset().StartTime,'MM'),'/DD=',formatDateTime(dataset().StartTime,'dd'),'/HH=',formatDateTime(dataset().StartTime,'HH'))",
 							"type": "Expression"
 						},
 						"fileSystem": "landing"
@@ -252,7 +255,14 @@
 					{
 						"name": "Fetch Configuration",
 						"type": "Lookup",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set variable1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -355,6 +365,10 @@
 												"filename": {
 													"value": "@item().tg_file_name",
 													"type": "Expression"
+												},
+												"StartTime": {
+													"value": "@pipeline().parameters.StartTime",
+													"type": "Expression"
 												}
 											}
 										}
@@ -362,11 +376,34 @@
 								}
 							]
 						}
+					},
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "CopyStartTime",
+							"value": {
+								"value": "@utcNow()",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"parameters": {
+					"StartTime": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"CopyStartTime": {
+						"type": "String"
+					}
 				},
 				"folder": {
 					"name": "Data Extraction Component"
