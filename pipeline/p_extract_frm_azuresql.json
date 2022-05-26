@@ -200,6 +200,13 @@
 											"type": "Expression"
 										},
 										"type": "Decimal"
+									},
+									"usedDataIntegrationUnits": {
+										"value": {
+											"value": "@item().usedDataIntegrationUnits",
+											"type": "Expression"
+										},
+										"type": "Decimal"
 									}
 								}
 							},
