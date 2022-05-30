@@ -147,7 +147,99 @@
 								"storedProcedureParameters": {
 									"error_detail": {
 										"value": {
-											"value": "@activity('Copy data from Source').output.errors",
+											"value": "@activity('Copy data from Source').output.errors[0].message",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"execution_date": {
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									},
+									"pipeline_name": {
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"rows_in_tgt": {
+										"value": {
+											"value": "@activity('Copy data from Source').output.rowsCopied",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
+									"rows_read_from_src": {
+										"value": {
+											"value": "@activity('Copy data from Source').output.rowsRead",
+											"type": "Expression"
+										},
+										"type": "Int32"
+									},
+									"source": {
+										"value": {
+											"value": "@item().src_object_name",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"target": {
+										"value": {
+											"value": "@item().tg_file_name",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"throughput": {
+										"value": {
+											"value": "@activity('Copy data from Source').output.throughput",
+											"type": "Expression"
+										},
+										"type": "Decimal"
+									},
+									"usedDataIntegrationUnits": {
+										"value": {
+											"value": "@activity('Copy data from Source').output.usedDataIntegrationUnits",
+											"type": "Expression"
+										},
+										"type": "Decimal"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ConfigDB",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Audit Logs_copy1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy data from Source",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[execution_audit_log]",
+								"storedProcedureParameters": {
+									"error_detail": {
+										"value": {
+											"value": "@activity('Copy data from Source').output.errors[0].message",
 											"type": "Expression"
 										},
 										"type": "String"
