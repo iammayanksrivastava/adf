@@ -193,7 +193,7 @@
 										"storedProcedureParameters": {
 											"error_detail": {
 												"value": {
-													"value": "@activity('Copy data from Source').output.errors[0].message",
+													"value": "@{activity('Copy data from Source').output.errors[0].message}",
 													"type": "Expression"
 												},
 												"type": "String"
@@ -285,7 +285,7 @@
 										"storedProcedureParameters": {
 											"error_detail": {
 												"value": {
-													"value": "@activity('Copy data from Source').output.errors[0].message",
+													"value": "@{activity('Copy data from Source').output.errors[0].message}",
 													"type": "Expression"
 												},
 												"type": "String"
