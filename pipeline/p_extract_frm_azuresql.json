@@ -146,10 +146,7 @@
 								"storedProcedureName": "[dbo].[execution_audit_log]",
 								"storedProcedureParameters": {
 									"error_detail": {
-										"value": {
-											"value": "@{activity('Copy data from Source').output.errors[0].message}",
-											"type": "Expression"
-										},
+										"value": null,
 										"type": "String"
 									},
 									"execution_date": {
