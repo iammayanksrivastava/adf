@@ -24,6 +24,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "\nselect \na.src_system_id, \na.src_server_fqdn,\na.src_server_db,\nb.src_object_location, \nb.src_object_name, \nb.src_filter_condition, \nb.tgt_location, \nb.tgt_location_container, \nb.tgt_location_container_folder, \nb.tg_file_name\nfrom config.source a inner join config.datasets b on a.src_system_id = b.src_system_id",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
