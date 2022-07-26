@@ -44,6 +44,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata').output.itemName",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Set variable2",
